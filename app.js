@@ -104,10 +104,9 @@ app.get("/",ensureAuth, (req, res) => {
   res.render("index", { message: "Voice Email System Running" });
 });
 app.get("/dashboard", (req, res) => {
-     if (!req.session.googleId) {
-        return res.redirect("/auth/login");
+    if (!req.session.tokens) {
+        return res.redirect("/");
     }
-
     res.send("Logged in Successfully!");
 });
 
