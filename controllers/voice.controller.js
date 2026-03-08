@@ -318,12 +318,19 @@ if (req.session.voiceState.step === "CONFIRM_REPLY")
     if (isYes(confirmation)) {
 
         try {
-            await smtpService.sendEmail(
-                req.session.googleId,
-                email.from,
-                "Re: " + email.subject,
-                req.session.voiceState.data.body
-            );
+            // await smtpService.sendEmail(
+            //     req.session.googleId,
+            //     email.from,
+            //     "Re: " + email.subject,
+            //     req.session.voiceState.data.body
+            // );
+            // NEW GMAIL API VERSION
+        await gmailService.sendEmail(
+            req.session.googleId,
+            email.from,
+            "Re: " + email.subject,
+            req.session.voiceState.data.body
+        );
         } catch {
             throw new AppError("Failed to send email.", 503);
         }
@@ -437,12 +444,19 @@ if (req.session.voiceState.step === "CONFIRM_DELETE") {
 
                     const { to, subject, body } = req.session.voiceState.data;
                     try{
-                          await smtpService.sendEmail(
-                        req.session.googleId,
-                        to,
-                        subject,
-                        body
-                    );
+                    //       await smtpService.sendEmail(
+                    //     req.session.googleId,
+                    //     to,
+                    //     subject,
+                    //     body
+                    // );
+                     // NEW GMAIL API VERSION
+            await gmailService.sendEmail(
+                req.session.googleId,
+                to,
+                subject,
+                body
+            );
                     }catch{
                         throw new AppError("Failed to send email.", 503);
                     }

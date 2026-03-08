@@ -170,3 +170,59 @@ exports.deleteEmail = async (googleId, messageId) => {
         id: messageId
     });
 };
+// another replacement for smtp 
+// services/gmail.service.js
+
+
+const Token = require("../models/token.model");
+const oauth2Client = require("../config/oauth.config");
+
+/**
+ * Send email using Gmail API (OAuth2)
+ * @param {String} googleId - User's Google ID
+ * @param {String} to - Recipient email
+ * @param {String} subject - Email subject
+ * @param {String} text - Email body
+ */
+exports.sendEmail = async (googleId, to, subject, text) => {
+    // Get user tokens
+    const tokenDoc = await Token.findOne({ googleId });
+    if (!tokenDoc) throw new Error("User tokens not found");
+
+    // Get valid access token (refresh if needed)
+    const accessToken = await tokenService.getValidAccessToken(googleId);
+
+    // Set credentials for OAuth2 client
+    oauth2Client.setCredentials({
+        access_token: accessToken,
+        refresh_token: tokenDoc.refreshToken
+    });
+
+    // Initialize Gmail API
+    const gmail = google.gmail({ version: "v1", auth: oauth2Client });
+
+    // Encode email in base64url
+    const message = [
+        `From: ${tokenDoc.email}`,
+        `To: ${to}`,
+        `Subject: ${subject}`,
+        "",
+        text
+    ].join("\r\n");
+
+    const encodedMessage = Buffer.from(message)
+        .toString("base64")
+        .replace(/\+/g, '-')
+        .replace(/\//g, '_')
+        .replace(/=+$/, '');
+
+    // Send email
+    const res = await gmail.users.messages.send({
+        userId: "me",
+        requestBody: {
+            raw: encodedMessage
+        }
+    });
+
+    return res.data; // Gmail API response
+};

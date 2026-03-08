@@ -29,7 +29,7 @@ const app = express();
    DATABASE CONNECTION
 ============================== */
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB Connected"))
+  .then(() => console.log("MongoDB Atlas Connected"))
   .catch(err => console.log("DB Error:", err));
 
 /* ==============================
@@ -111,9 +111,11 @@ app.get("/dashboard", (req, res) => {
 });
 
 
+
 app.use((req, res, next) => {
     next(new AppError(`Route ${req.originalUrl} not found`, 404));
 });
+
 app.use((err, req, res, next) => {
 
     console.error("🔥 ERROR:", err);
