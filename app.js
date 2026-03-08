@@ -63,7 +63,7 @@ app.use(morgan("dev"));
    SESSION CONFIG (connect-mongo v4+)
 ============================== */
 
-
+app.set("trust proxy", 1);
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
@@ -104,9 +104,10 @@ app.get("/",ensureAuth, (req, res) => {
   res.render("index", { message: "Voice Email System Running" });
 });
 app.get("/dashboard", (req, res) => {
-    if (!req.session.tokens) {
-        return res.redirect("/");
+     if (!req.session.googleId) {
+        return res.redirect("/auth/login");
     }
+
     res.send("Logged in Successfully!");
 });
 
