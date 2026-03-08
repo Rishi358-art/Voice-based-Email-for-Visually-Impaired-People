@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Email Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<main class="container">
+
+    <h1>Voice Email Assistant</h1>
+    <a href="/auth/logout" class="logout-btn">Logout</a>
+    <button 
+        id="speakBtn"
+        class="mic-button"
+        aria-label="Start voice command"
+        aria-pressed="false"
+    >
+        🎤 Start Listening
+    </button>
+
+    <section class="status-section" aria-live="polite">
+
+        <p id="status" role="status">
+            Status: Idle
+        </p>
+
+        <p id="lastCommand" aria-live="assertive"></p>
+
+        <div 
+            id="response"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true">
+        </div>
+
+        <!-- Loading indicator -->
+        <p 
+            id="loading"
+            role="status"
+            aria-live="polite"
+            style="display:none; font-weight:bold;">
+            Loading...
+        </p>
+
+    </section>
+
+    <section 
+        id="emails"
+        class="emails"
+        aria-label="Email list">
+    </section>
+
+    <section 
+        class="help"
+        aria-label="Keyboard shortcuts">
+
+        <p><strong>Keyboard Shortcuts</strong></p>
+
+        <ul>
+            <li>Press SPACE to start listening</li>
+            <li>Press ESC to cancel the current command</li>
+            <li>Press R to repeat the last response</li>
+        </ul>
+
+    </section>
+
+</main>
+<footer class="footer">
+    <p>Voice Email Assistant</p>
+    <p>Designed to help visually challenged users manage emails using voice commands.</p>
+    <p>Secure Google OAuth Authentication</p>
+</footer>
+<script src="/js/voice.js"></script>
+
+</body>
+</html>

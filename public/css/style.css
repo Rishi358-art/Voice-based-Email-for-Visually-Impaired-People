@@ -1,0 +1,360 @@
+/* =========================
+   GLOBAL STYLES
+========================= */
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    background: linear-gradient(135deg,#0f1117,#141824,#0f1117);
+    color: #ffffff;
+    font-family: "Arial", sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+.container {
+    flex: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px;
+    text-align: center;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 8px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+}
+
+.container p {
+    opacity: 0.8;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* =========================
+   LOGIN / LOGOUT BUTTONS
+========================= */
+
+.login-btn,
+.logout-btn {
+    display: inline-block;
+    padding: 12px 26px;
+    font-weight: 500;
+    border-radius: 10px;
+    text-decoration: none;
+    margin: 10px 6px;
+    transition: all 0.25s ease;
+}
+
+.login-btn {
+    background: #4285F4;
+    box-shadow: 0 4px 14px rgba(66,133,244,0.35);
+}
+
+.login-btn:hover {
+    background: #2d6cdf;
+    transform: translateY(-2px);
+}
+
+.logout-btn {
+    background: #e74c3c;
+    box-shadow: 0 4px 14px rgba(231,76,60,0.35);
+}
+
+.logout-btn:hover {
+    background: #c0392b;
+}
+
+/* =========================
+   MICROPHONE BUTTON
+========================= */
+
+.mic-button {
+    font-size: 22px;
+    padding: 16px 36px;
+    border-radius: 16px;
+    border: none;
+    background: linear-gradient(135deg,#1f6feb,#3b82f6);
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-top: 20px;
+    box-shadow: 0 8px 25px rgba(31,111,235,0.35);
+}
+
+.mic-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg,#155ac5,#2563eb);
+}
+
+.mic-button.listening {
+    background: linear-gradient(135deg,#d93025,#ff3b30);
+}
+
+/* =========================
+   STATUS SECTION
+========================= */
+
+.status-section {
+    margin-top: 28px;
+    font-size: 18px;
+    background: #181b23;
+    padding: 22px;
+    border-radius: 14px;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+}
+
+.status-section p {
+    margin: 8px 0;
+}
+
+#status {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+#lastCommand {
+    font-size: 16px;
+    opacity: 0.75;
+}
+
+/* =========================
+   RESPONSE BOX
+========================= */
+
+#response {
+    margin-top: 18px;
+    padding: 18px;
+    background: #11141c;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 17px;
+    line-height: 1.6;
+    white-space: pre-line;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+#response strong {
+    color: #4f9cff;
+}
+
+/* =========================
+   EMAIL LIST
+========================= */
+
+.emails {
+    margin-top: 30px;
+    text-align: left;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* =========================
+   EMAIL CARD
+========================= */
+
+.email-card {
+    background: #181b23;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 18px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.email-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+.email-header {
+    font-size: 15px;
+    opacity: 0.75;
+}
+
+.email-subject {
+    font-size: 18px;
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+.email-body {
+    margin-top: 10px;
+    font-size: 16px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+/* =========================
+   HELP SECTION
+========================= */
+
+.help {
+    margin-top: 40px;
+    font-size: 15px;
+    opacity: 0.85;
+    background: #181b23;
+    padding: 18px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.help ul {
+    padding-left: 18px;
+    text-align: left;
+}
+
+.help li {
+    margin: 6px 0;
+}
+
+/* =========================
+   LOADING
+========================= */
+
+#loading {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+button:focus {
+    outline: 3px solid #4f9cff;
+    outline-offset: 3px;
+}
+
+/* =========================
+   MICROPHONE PULSE
+========================= */
+
+.mic-button.listening {
+    animation: pulse 1.2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.6); }
+    70% { box-shadow: 0 0 0 20px rgba(217, 48, 37, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(217, 48, 37, 0); }
+}
+.login-btn {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+padding: 12px 22px;
+background: #ffffff;
+color: #333;
+text-decoration: none;
+border-radius: 10px;
+font-weight: 500;
+box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+.google-icon {
+width: 22px;
+height: 22px;
+}
+.footer {
+    text-align: center;
+    padding: 18px;
+    font-size: 14px;
+    opacity: 0.75;
+    border-top: 1px solid #2a2f3a;
+    background: #0f1117;
+}
+
+.footer p {
+    margin: 4px 0;
+}
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 18px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .mic-button {
+        width: 100%;
+        font-size: 20px;
+        padding: 14px;
+    }
+
+    .status-section,
+    .help,
+    .email-card {
+        padding: 16px;
+    }
+
+    .emails {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+
+    .login-btn,
+    .logout-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 280px;
+        margin: 10px auto;
+    }
+    .footer {
+        font-size: 12px;
+        padding: 14px;
+    }
+
+    #response {
+        font-size: 15px;
+    }
+}
+.email-card {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+h1 {
+    background: linear-gradient(90deg, #4f9cff, #3b82f6);
+
+    /* Standard property for compatibility */
+    background-clip: text;
+
+    /* WebKit version for Safari/Chrome */
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+}
+.mic-button {
+    box-shadow: 0 10px 28px rgba(31,111,235,0.4);
+}
